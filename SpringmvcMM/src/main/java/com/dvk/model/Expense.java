@@ -4,6 +4,7 @@ public class Expense {
 
 	private int amount;
 	private String person;
+	private String category;
 	
 	public int getAmount() {
 		return amount;
@@ -16,5 +17,11 @@ public class Expense {
 	}
 	public void setPerson(String person) {
 		this.person = person;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

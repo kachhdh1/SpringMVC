@@ -25,6 +25,7 @@
 		<servlet-name>springmvcMM</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
+	<!-- entry for supporting json response from controller(dispatcher servlet) -->
 	<servlet-mapping>
 		<servlet-name>springmvcMM</servlet-name>
 		<url-pattern>*.json</url-pattern>
