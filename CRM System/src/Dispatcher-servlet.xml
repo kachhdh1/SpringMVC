@@ -23,6 +23,27 @@
 	<!-- this will enable default httpmessageconverters,
 	which can be used by rest controller to convert object into representation.
 	Also used in spring validation -->
-	<mvc:annotation-driven />
+	<!-- our custom contentNegotionmanager should be plugged in to activate -->
+	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
+	
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<!-- to disable rule 1 - extention -->
+		<property name="favorPathExtension" value="false"/>
+		
+		<!-- to enable rule 2 - request param, default parameter name = format -->
+		<property name="favorParameter" value="true"/>
+		
+		<!-- ovverride default paramerter name format -->
+		<property name="parameterName" value="mediaType"/>
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"></entry>
+				<entry key="xml" value="application/xml"></entry>				
+			</map>
+		</property>
+		
+		<!-- to enable rule 3 - accept header to work -->
+		<property name="ignoreAcceptHeader" value="false"/>
+	</bean>
 
 </beans>
