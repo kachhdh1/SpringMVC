@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	                    http://www.springframework.org/schema/beans/spring-beans.xsd
-	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!--  reuse the existing business tiers - note we're using a special database for the web version
 	      (actually one that we've embedded into Tomcat. -->
@@ -16,6 +16,13 @@
 	<import resource="/misc-beans.xml"/>	
 		
 	<!--  also, we need to autowire the controllers -->
-	<context:component-scan base-package="com.virtualpairprogrammers.controllers"/>
+	<context:component-scan base-package="com.virtualpairprogrammers.webcontrollers"/>
+	<!-- add rest controllers in different package -->
+	<context:component-scan base-package="com.virtualpairprogrammers.restcontrollers"/>
+	
+	<!-- this will enable default httpmessageconverters,
+	which can be used by rest controller to convert object into representation.
+	Also used in spring validation -->
+	<mvc:annotation-driven />
 
 </beans>
